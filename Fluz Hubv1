@@ -878,3 +878,18 @@ TeleportTab:AddButton({
       wait(1)
                 end
         end})
+
+Macro:AddToggle({
+	Name = "Auto Stomp",
+	Default = false,
+	Callback = function(r)
+		if r == true then
+            game:GetService('RunService'):BindToRenderStep("Auto-Stomp", 0 , function()
+                game:GetService("ReplicatedStorage").MainEvent:FireServer("Stomp")
+            end)
+        elseif r == false then
+            game:GetService('RunService'):UnbindFromRenderStep("Auto-Stomp")
+        end
+	end    
+})  
+
